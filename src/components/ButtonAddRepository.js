@@ -2,9 +2,9 @@ import React from 'react'
 
 import api from '../services/api'
 
-const ButtonAddRepository = ({ addRepository }) => {
+const ButtonAddRepository = ({ onSuccess }) => {
 
-  const handleAddRepository = async () => {
+  const addRepository = async () => {
     const response = await api.post('repositories', {
       title: `Title ${Date.now()}`,
       url: `http://github.com/${Date.now()}`,
@@ -13,11 +13,11 @@ const ButtonAddRepository = ({ addRepository }) => {
 
     const repository = await response.data
 
-    addRepository(repository)
+    onSuccess(repository)
   }
 
   return (
-    <button onClick={handleAddRepository}>
+    <button onClick={addRepository}>
       Adicionar
     </button>
   )

@@ -33,7 +33,7 @@ function App() {
         onSuccess={handleRemoveRepository}
       />
 
-      <ButtonAddRepository addRepository={handleAddRepository} />
+      <ButtonAddRepository onSuccess={handleAddRepository} />
     </>
   );
 }
