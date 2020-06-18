@@ -20,11 +20,17 @@ function App() {
     setRepositories([...repositories, repository])
   }
 
+  async function handleRemoveRepository(id) {
+    const newRepositories = repositories.filter(repository => repository.id !== id)
+
+    setRepositories(newRepositories)
+  }
+
   return (
     <>
       <ListRepository
         repositories={repositories}
-        setRepositories={setRepositories}
+        onSuccess={handleRemoveRepository}
       />
 
       <ButtonAddRepository addRepository={handleAddRepository} />

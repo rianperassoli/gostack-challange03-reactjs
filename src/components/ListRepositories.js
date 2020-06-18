@@ -3,15 +3,13 @@ import React from 'react'
 import api from '../services/api'
 import ItemRepository from './ItemRepository'
 
-const ListRepository = ({ repositories, setRepositories }) => {
+const ListRepository = ({ repositories, onSuccess }) => {
 
-  async function handleRemoveRepository(id) {
+  async function removeRepository(id) {
     const response = await api.delete(`repositories/${id}`)
 
     if (response.status === 204) {
-      const newRepositories = repositories.filter(repository => repository.id !== id)
-
-      setRepositories(newRepositories)
+      onSuccess(id)
     }
   }
 
@@ -22,7 +20,7 @@ const ListRepository = ({ repositories, setRepositories }) => {
           <div key={repository.id}>
             <ItemRepository
               repository={repository}
-              removeRepository={() => handleRemoveRepository(repository.id)}
+              removeRepository={() => removeRepository(repository.id)}
             />
           </div>
         ))
