@@ -29,7 +29,10 @@ function App() {
 
   return (
     <>
-      <ListRepository repositories={repositories} setRepositories={setRepositories} />
+      <ListRepository
+        repositories={repositories}
+        setRepositories={setRepositories}
+      />
 
       <button onClick={handleAddRepository}>Adicionar</button>
     </>

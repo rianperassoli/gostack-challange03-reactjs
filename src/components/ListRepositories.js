@@ -20,7 +20,10 @@ const ListRepository = ({ repositories, setRepositories }) => {
       {
         repositories.map(repository => (
           <div key={repository.id}>
-            <ItemRepository repository={repository} removeRepository={() => handleRemoveRepository(repository.id)} />
+            <ItemRepository
+              repository={repository}
+              removeRepository={() => handleRemoveRepository(repository.id)}
+            />
           </div>
         ))
       }
