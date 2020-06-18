@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./styles.css";
 
 import api from './services/api'
+import ListRepository from './components/ListRepositories'
 
 function App() {
 
@@ -26,34 +27,12 @@ function App() {
     setRepositories([...repositories, repository])
   }
 
-  async function handleRemoveRepository(id) {
-    const response = await api.delete(`repositories/${id}`)
-
-    if (response.status === 204) {
-      const newRepositories = repositories.filter(repository => repository.id !== id)
-
-      setRepositories(newRepositories)
-    }
-  }
-
   return (
-    <div>
-      <ul data-testid="repository-list">
-        {
-          repositories.map(repository => (
-            <li key={repository.id}>
-              {repository.title}
-
-              <button onClick={async () => await handleRemoveRepository(repository.id)}>
-                Remover
-              </button>
-            </li>
-          ))
-        }
-      </ul>
+    <>
+      <ListRepository repositories={repositories} setRepositories={setRepositories} />
 
       <button onClick={handleAddRepository}>Adicionar</button>
-    </div>
+    </>
   );
 }
 
