@@ -4,6 +4,7 @@ import "./styles.css";
 
 import api from './services/api'
 import ListRepository from './components/ListRepositories'
+import ButtonAddRepository from './components/ButtonAddRepository'
 
 function App() {
 
@@ -15,15 +16,7 @@ function App() {
     })
   }, [])
 
-  async function handleAddRepository() {
-    const response = await api.post('repositories', {
-      title: `Title ${Date.now()}`,
-      url: `http://github.com/${Date.now()}`,
-      techs: ["react", "react native", "nodejs"]
-    })
-
-    const repository = await response.data
-
+  async function handleAddRepository(repository) {
     setRepositories([...repositories, repository])
   }
 
@@ -34,7 +27,7 @@ function App() {
         setRepositories={setRepositories}
       />
 
-      <button onClick={handleAddRepository}>Adicionar</button>
+      <ButtonAddRepository addRepository={handleAddRepository} />
     </>
   );
 }
